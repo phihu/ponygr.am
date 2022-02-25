@@ -32,13 +32,13 @@ type Config struct {
 		Proxy bool
 
 		CORSOrigins []string
-		CSPHeader   string `envconfig:"default=default-src 'self'; script-src 'self' ajax.cloudflare.com client.crisp.chat; style-src 'self' fonts.googleapis.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com; img-src 'self' supercrew-dev.imgix.net"`
+		CSPHeader   string `envconfig:"default=default-src 'self'"`
 	}
 
 	DB struct {
 		Debug bool
 
-		DSN             string        `envconfig:"default=root:root@tcp(127.0.0.1)/humboldt?charset=utf8mb4&parseTime=true&time_zone=UTC"`
+		DSN             string        `envconfig:"default=root:root@tcp(127.0.0.1)/ponygram?charset=utf8mb4&parseTime=true&time_zone=UTC"`
 		ConnMaxLifetime time.Duration `envconfig:"default=30m"`
 
 		CACert string
