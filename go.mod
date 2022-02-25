@@ -3,8 +3,11 @@ module github.com/phihu/ponygr.am
 go 1.16
 
 require (
-	github.com/go-kit/kit v0.12.0
 	github.com/go-kit/log v0.2.0
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/go-stack/stack v1.8.1
 	github.com/pkg/errors v0.9.1
+	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/vrischmann/envconfig v1.3.0
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

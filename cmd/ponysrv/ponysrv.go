@@ -32,9 +32,13 @@ type app struct {
 	ctx    context.Context
 	cancel context.CancelFunc
 
+	// our loggers
 	errLog, infoLog, debugLog log.Logger
 
 	cfg *config.Config
+
+	// The default HTTP client, sharing connection pool
+	cl *http.Client
 }
 
 func runWithCode() int {
@@ -81,6 +85,10 @@ func runWithCode() int {
 		// nolint: errcheck
 		app.debugLog.Log("msg", "debug log enabled")
 		app.ctx = plog.ContextWithDebugLog(app.ctx, app.debugLog)
+	}
+
+	app.cl = &http.Client{
+		Timeout: app.cfg.HTTP.Client.Timeout,
 	}
 
 	return 0

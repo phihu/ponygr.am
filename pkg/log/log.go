@@ -8,14 +8,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 )
 
 const (
 	contextKeyErrLog contextKey = iota
 	contextKeyInfoLog
 	contextKeyDebugLog
-	contextKeySessionDebugLog
 )
 
 type (
@@ -83,21 +82,6 @@ func ContextWithDebugLog(ctx context.Context, debugLog Logger) context.Context {
 
 func DebugLog(ctx context.Context) Logger {
 	if logger, ok := ctx.Value(contextKeyDebugLog).(Logger); !ok {
-		return log.NewNopLogger()
-	} else {
-		return logger
-	}
-}
-
-func ContextWithSessionDebugLog(ctx context.Context, debugLog Logger) context.Context {
-	return context.WithValue(ctx, contextKeySessionDebugLog, IdentifyingLogger{
-		Logger: debugLog,
-		id:     "sessionDebugLog",
-	})
-}
-
-func SessionDebugLog(ctx context.Context) Logger {
-	if logger, ok := ctx.Value(contextKeySessionDebugLog).(Logger); !ok {
 		return log.NewNopLogger()
 	} else {
 		return logger
