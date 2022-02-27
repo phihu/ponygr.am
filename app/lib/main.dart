@@ -24,7 +24,7 @@ class PonygramApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const PonygramHomePage(title: 'Ponygram Home Page'),
+      home: const PonygramHomePage(title: 'Ponygr.am'),
     );
   }
 }
