@@ -14,8 +14,18 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
     if (uri.pathSegments.length == 0) {
       return PonygramRoutePath.home();
     }
-    if (uri.pathSegments.length == 1 && uri.pathSegments[0] == 'account') {
-      return PonygramRoutePath.account();
+    if (uri.pathSegments.length == 1) {
+      switch(uri.pathSegments[0]){
+        case 'account':
+          return PonygramRoutePath.account();
+        case 'search':
+          return PonygramRoutePath.search();
+        case 'post':
+          return PonygramRoutePath.post();
+        case 'messages':
+          return PonygramRoutePath.messages();
+      }
+      return PonygramRoutePath.home();
     }
 
     // Handle '/book/:id'
@@ -39,6 +49,15 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
     }
     if (path.isAccountPage) {
       return RouteInformation(location: '/account');
+    }
+    if (path.isMessagesPage) {
+      return RouteInformation(location: '/messages');
+    }
+    if (path.isSearchPage) {
+      return RouteInformation(location: '/search');
+    }
+    if (path.isPostPage) {
+      return RouteInformation(location: '/post');
     }
     if (path.isHomePage) {
       return RouteInformation(location: '/');

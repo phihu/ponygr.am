@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'ponygram_route_path.dart';
 import '../pages/home_page.dart';
+import '../pages/search-page.dart';
+import '../pages/messages-pages.dart';
+import '../pages/post-page.dart';
 import '../pages/account_page.dart';
 
 class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PonygramRoutePath> {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  String page = 'home';
+  String _page = 'home';
   bool show404 = false;
 
 
@@ -19,7 +22,7 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
       return PonygramRoutePath.unknown();
     }
 //    : PonygramRoutePath.details(books.indexOf(_selectedBook));
-    if(page == 'account') {
+    if(_page == 'account') {
       return PonygramRoutePath.account();
     }
     return PonygramRoutePath.home();
@@ -37,11 +40,18 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
             onTapped: _handleBookTapped,
           ),
         ),
+//        if (show404 || _page == 'home')
  */
-        if (show404 || page == 'home')
-          MaterialPage(key: ValueKey('Home'), child: HomePage())
-        else if (page == 'account')
-          MaterialPage(key: ValueKey('Account'), child: AccountPage())
+        if (_page == 'search')
+          MaterialPage(key: ValueKey('Search'), child: SearchPage(navigate: _navigate))
+        else if (_page == 'messages')
+          MaterialPage(key: ValueKey('Messages'), child: MessagesPage(navigate: _navigate))
+        else if (_page == 'post')
+            MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: _navigate))
+        else if (_page == 'account')
+          MaterialPage(key: ValueKey('Account'), child: AccountPage(navigate: _navigate))
+        else
+          MaterialPage(key: ValueKey('Home'), child: HomePage(navigate: _navigate))
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -50,7 +60,7 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
 
         // Update the list of pages by setting _selectedBook to null
         show404 = false;
-        page = '';
+        _page = '';
         notifyListeners();
         return true;
       },
@@ -77,10 +87,10 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
 
     show404 = false;
   }
-/*
-  void _handleBookTapped(Book book) {
-    _selectedBook = book;
+
+  void _navigate(String page) {
+    _page = page;
     notifyListeners();
   }
- */
+
 }

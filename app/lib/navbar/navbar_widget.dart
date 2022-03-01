@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  final ValueChanged<String> navigate;
+  const BottomNavBar({Key? key, required this.navigate}) : super(key: key);
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
@@ -14,6 +15,23 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      switch(index){
+        case 1:
+          widget.navigate('search');
+          break;
+        case 2:
+          widget.navigate('post');
+          break;
+        case 3:
+          widget.navigate('messages');
+          break;
+        case 4:
+          widget.navigate('account');
+          break;
+        default:
+          widget.navigate('home');
+          break;
+      }
     });
   }
 

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../navbar/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final ValueChanged<String> navigate;
+
+  const HomePage({Key? key, required this.navigate }) : super(key: key);
 
   // This class is the configuration for the state. It holds the values (in this
   // case the title) provided by the parent (in this case the App widget) and
@@ -14,19 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -49,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar:
-      const BottomNavBar(), // This trailing comma makes auto-formatting nicer for build methods.
+      BottomNavBar(navigate: widget.navigate), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -25,7 +25,6 @@ class _PonygramAppState extends State<PonygramApp> {
   PonygramRouteInformationParser();
 
   @override
-
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Ponygr.am',

@@ -11,6 +11,18 @@ class PonygramRoutePath {
       : page = 'account',
         isUnknown = false;
 
+  PonygramRoutePath.search()
+      : page = 'search',
+        isUnknown = false;
+
+  PonygramRoutePath.messages()
+      : page = 'messages',
+        isUnknown = false;
+
+  PonygramRoutePath.post()
+      : page = 'post',
+        isUnknown = false;
+
 //  PonygramRoutePath.details(this.id) : isUnknown = false;
 
   PonygramRoutePath.unknown()
@@ -19,6 +31,9 @@ class PonygramRoutePath {
 
   bool get isHomePage => page == 'home';
   bool get isAccountPage => page == 'account';
+  bool get isMessagesPage => page == 'messages';
+  bool get isSearchPage => page == 'search';
+  bool get isPostPage => page == 'post';
 
 //  bool get isDetailsPage => id != null;
 }
