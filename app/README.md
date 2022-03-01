@@ -1,4 +1,4 @@
-# app
+# Ponygr.am
 
 THE hyper social network, look a squirrel, yee-haw
 
