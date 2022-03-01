@@ -1,0 +1,22 @@
+{
+    "navLabelHome": "Home",
+    "@navLabelHome": {
+        "description": "Label for nav item home"
+    },
+    "navLabelSearch": "Search",
+    "@navLabelSearch": {
+        "description": "Label for nav item search"
+    },
+    "navLabelNewPost": "New post",
+    "@navLabelNewPost": {
+        "description": "Label for nav item new post"
+    },
+    "navLabelMessages": "Messages",
+    "@navLabelMessages": {
+        "description": "Label for nav item messages"
+    },
+    "navLabelAccount": "Account",
+    "@navLabelAccount": {
+        "description": "Label for nav item account"
+    }
+}
