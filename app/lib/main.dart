@@ -11,7 +11,7 @@ class PonygramApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ponygr.am',
       theme: ThemeData(
         // This is the theme of your application.
         //
