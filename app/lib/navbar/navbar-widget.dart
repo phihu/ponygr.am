@@ -47,7 +47,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person_rounded, size: 30.0, color: Colors.green),
+          icon: Icon(Icons.person_rounded, size: 30.0, color: Colors.greenAccent),
           label: AppLocalizations.of(context)!.navLabelAccount,
           backgroundColor: Colors.pink,
         ),
