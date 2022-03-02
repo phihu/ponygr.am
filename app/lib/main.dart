@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'routing/ponygram_route_information_parser.dart';
+import 'routing/pny_route_information_parser.dart';
 import 'routing/ponygram_router_delegate.dart';
 
 import 'pages/home_page.dart';
@@ -31,7 +31,7 @@ class _PonygramAppState extends State<PonygramApp> {
       routerDelegate: _routerDelegate,
       routeInformationParser: _routeInformationParser,
       localizationsDelegates: [
-        AppLocalizations.delegate, // Add this line
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

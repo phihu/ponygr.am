@@ -47,7 +47,7 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
         else if (_page == 'messages')
           MaterialPage(key: ValueKey('Messages'), child: MessagesPage(navigate: _navigate))
         else if (_page == 'post')
-            MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: _navigate))
         else if (_page == 'account')
           MaterialPage(key: ValueKey('Account'), child: AccountPage(navigate: _navigate))
         else
@@ -57,7 +57,6 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
         if (!route.didPop(result)) {
           return false;
         }
-
         // Update the list of pages by setting _selectedBook to null
         show404 = false;
         _page = '';
