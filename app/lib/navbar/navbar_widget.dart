@@ -46,27 +46,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home_rounded, size: 30.0, color: Colors.purple),
-          label: AppLocalizations.of(context)!.navLabelHome,
+          label: AppLocalizations.of(context)?.navLabelHome ?? '',
           backgroundColor: Colors.red,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search_rounded, size: 30.0, color: Colors.yellowAccent),
-          label: AppLocalizations.of(context)!.navLabelSearch,
+          label: AppLocalizations.of(context)?.navLabelSearch ?? '',
           backgroundColor: Colors.green,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add_circle_rounded, size: 70.0, color: Colors.cyanAccent),
-          label: AppLocalizations.of(context)!.navLabelNewPost,
+          label: AppLocalizations.of(context)?.navLabelNewPost ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.mail_rounded, size: 30.0, color: Colors.pink),
-          label: AppLocalizations.of(context)!.navLabelMessages,
+          label: AppLocalizations.of(context)?.navLabelMessages ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_rounded, size: 30.0, color: Colors.greenAccent),
-          label: AppLocalizations.of(context)!.navLabelAccount,
+          label: AppLocalizations.of(context)?.navLabelAccount ?? '',
           backgroundColor: Colors.pink,
         ),
       ],

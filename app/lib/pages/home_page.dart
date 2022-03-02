@@ -24,8 +24,7 @@ class _HomePageState extends State<HomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      body: Stack(
+    return Stack(
         children: <Widget>[
           Container(
             constraints: BoxConstraints.expand(),
@@ -36,9 +35,6 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-      ),
-      bottomNavigationBar:
-      BottomNavBar(navigate: widget.navigate), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

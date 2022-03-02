@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../navbar/navbar_widget.dart';
 
 import 'routing/pny_route_information_parser.dart';
 import 'routing/ponygram_router_delegate.dart';
-
-import 'pages/home_page.dart';
-import 'pages/account_page.dart';
 
 void main() {
   runApp(const PonygramApp());
@@ -42,7 +40,16 @@ class _PonygramAppState extends State<PonygramApp> {
       ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      )
+      ),
+      builder: (context, child){
+        return MaterialApp(
+            home: Scaffold(
+              body:child,
+              bottomNavigationBar:
+                BottomNavBar(navigate: _routerDelegate.navigate), // This trailing comma makes auto-formatting nicer for build methods.
+            ),
+        );
+      }
     );
   }
 }

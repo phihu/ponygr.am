@@ -7,8 +7,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Stack(
         children: <Widget>[
           Container(
             constraints: BoxConstraints.expand(),
@@ -17,9 +16,6 @@ class AccountPage extends StatelessWidget {
             ),
           )
         ],
-      ),
-      bottomNavigationBar:
-          BottomNavBar(navigate: this.navigate), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      );
   }
 }

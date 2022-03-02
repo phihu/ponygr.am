@@ -43,15 +43,15 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
 //        if (show404 || _page == 'home')
  */
         if (_page == 'search')
-          MaterialPage(key: ValueKey('Search'), child: SearchPage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Search'), child: SearchPage(navigate: navigate))
         else if (_page == 'messages')
-          MaterialPage(key: ValueKey('Messages'), child: MessagesPage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Messages'), child: MessagesPage(navigate: navigate))
         else if (_page == 'post')
-          MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: navigate))
         else if (_page == 'account')
-          MaterialPage(key: ValueKey('Account'), child: AccountPage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Account'), child: AccountPage(navigate: navigate))
         else
-          MaterialPage(key: ValueKey('Home'), child: HomePage(navigate: _navigate))
+          MaterialPage(key: ValueKey('Home'), child: HomePage(navigate: navigate))
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -87,9 +87,10 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
     show404 = false;
   }
 
-  void _navigate(String page) {
+  @override
+  Future<bool> navigate(String page) {
     _page = page;
     notifyListeners();
+    return Future.value(true);
   }
-
 }
