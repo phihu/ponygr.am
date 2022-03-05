@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../navbar/navbar_widget.dart';
+import '../widgets/navbar_widget.dart';
 
 import 'routing/pny_route_information_parser.dart';
 import 'routing/ponygram_router_delegate.dart';

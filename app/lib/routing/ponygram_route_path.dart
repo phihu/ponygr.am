@@ -19,8 +19,8 @@ class PonygramRoutePath {
       : page = 'messages',
         isUnknown = false;
 
-  PonygramRoutePath.post()
-      : page = 'post',
+  PonygramRoutePath.newPost()
+      : page = 'new',
         isUnknown = false;
 
 //  PonygramRoutePath.details(this.id) : isUnknown = false;
@@ -33,7 +33,7 @@ class PonygramRoutePath {
   bool get isAccountPage => page == 'account';
   bool get isMessagesPage => page == 'messages';
   bool get isSearchPage => page == 'search';
-  bool get isPostPage => page == 'post';
+  bool get isNewPostPage => page == 'new';
 
 //  bool get isDetailsPage => id != null;
 }

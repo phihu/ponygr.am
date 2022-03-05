@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavBar extends StatefulWidget {
   final ValueChanged<String> navigate;
@@ -45,27 +46,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: const Icon(Icons.home_rounded, size: 30.0, color: Colors.purple),
+          icon: const FaIcon(FontAwesomeIcons.home, size: 30.0, color: Colors.purple),
           label: AppLocalizations.of(context)?.navLabelHome ?? '',
           backgroundColor: Colors.red,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.search_rounded, size: 30.0, color: Colors.yellowAccent),
+          icon: const FaIcon(FontAwesomeIcons.search, size: 30.0, color: Colors.yellowAccent),
           label: AppLocalizations.of(context)?.navLabelSearch ?? '',
           backgroundColor: Colors.green,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.add_circle_rounded, size: 70.0, color: Colors.cyanAccent),
+          icon: const FaIcon(FontAwesomeIcons.plusCircle, size: 70.0, color: Colors.cyanAccent),
           label: AppLocalizations.of(context)?.navLabelNewPost ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.mail_rounded, size: 30.0, color: Colors.pink),
+          icon: const FaIcon(FontAwesomeIcons.envelope, size: 30.0, color: Colors.pink),
           label: AppLocalizations.of(context)?.navLabelMessages ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.person_rounded, size: 30.0, color: Colors.greenAccent),
+          icon: const FaIcon(FontAwesomeIcons.userCog, size: 30.0, color: Colors.greenAccent),
           label: AppLocalizations.of(context)?.navLabelAccount ?? '',
           backgroundColor: Colors.pink,
         ),

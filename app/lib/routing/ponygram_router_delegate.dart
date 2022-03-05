@@ -4,7 +4,7 @@ import 'ponygram_route_path.dart';
 import '../pages/home.dart';
 import '../pages/search.dart';
 import '../pages/messages.dart';
-import '../pages/post.dart';
+import '../pages/new_post.dart';
 import '../pages/account.dart';
 
 class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
@@ -48,8 +48,8 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
           MaterialPage(key: const ValueKey('Search'), child: SearchPage(navigate: navigate))
         else if (_page == 'messages')
           MaterialPage(key: const ValueKey('Messages'), child: MessagesPage(navigate: navigate))
-        else if (_page == 'post')
-          MaterialPage(key: const ValueKey('Post'), child: PostPage(navigate: navigate))
+        else if (_page == 'new')
+          MaterialPage(key: const ValueKey('New'), child: NewPostPage(navigate: navigate))
         else if (_page == 'account')
           MaterialPage(key: const ValueKey('Account'), child: AccountPage(navigate: navigate))
         else

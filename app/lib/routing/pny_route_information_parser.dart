@@ -21,7 +21,7 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
         case 'search':
           return PonygramRoutePath.search();
         case 'post':
-          return PonygramRoutePath.post();
+          return PonygramRoutePath.newPost();
         case 'messages':
           return PonygramRoutePath.messages();
       }
@@ -56,8 +56,8 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
     if (configuration.isSearchPage) {
       return const RouteInformation(location: '/search');
     }
-    if (configuration.isPostPage) {
-      return const RouteInformation(location: '/post');
+    if (configuration.isNewPostPage) {
+      return const RouteInformation(location: '/new');
     }
     if (configuration.isHomePage) {
       return const RouteInformation(location: '/');

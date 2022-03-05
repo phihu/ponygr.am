@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/post.dart';
 
 class HomePage extends StatefulWidget {
   final ValueChanged<String> navigate;
@@ -24,15 +25,8 @@ class _HomePageState extends State<HomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Stack(
-        children: <Widget>[
-          Container(
-            constraints: const BoxConstraints.expand(),
-            color: Colors.black,
-            child: FittedBox(
-              fit: BoxFit.fill,
-              child: Image.asset('assets/testbg.jpg'),
-            ),
-          )
+        children: const <Widget>[
+            PostWidget()
         ],
     );
   }
