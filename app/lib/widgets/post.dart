@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 class PostWidget extends StatefulWidget {
   const PostWidget({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class PostWidget extends StatefulWidget {
 
 class _PostWidgetState extends State<PostWidget> {
   static const iconBoxSize = 80.0;
-  static const iconSize = 55.0;
+  static const iconSize = 45.0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +38,36 @@ class _PostWidgetState extends State<PostWidget> {
                 children: const [
                   SizedBox(
                     height: iconBoxSize,
-                    child: FaIcon(FontAwesomeIcons.solidHeart, size: iconSize, color: Colors.white),
-                  ),
-                  SizedBox(
-                      height: iconBoxSize,
-                      child: FaIcon(FontAwesomeIcons.icons, size: iconSize, color: Colors.white),
+                    width: iconBoxSize,
+                    child:GlowIcon(
+                      FontAwesomeIcons.solidHeart,
+                      size: iconSize,
+                      color: Colors.white,
+                      glowColor:  Colors.white,
+                      blurRadius: 20,
+                    ),
                   ),
                   SizedBox(
                     height: iconBoxSize,
-                    child:
-                      FaIcon(FontAwesomeIcons.reply, size: iconSize, color: Colors.white),
+                    width: iconBoxSize,
+                    child:GlowIcon(
+                      FontAwesomeIcons.icons,
+                      size: iconSize,
+                      color: Colors.white,
+                      glowColor:  Colors.white,
+                      blurRadius: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: iconBoxSize,
+                    width: iconBoxSize,
+                    child:GlowIcon(
+                      FontAwesomeIcons.reply,
+                      size: iconSize,
+                      color: Colors.white,
+                      glowColor:  Colors.white,
+                      blurRadius: 20,
+                    ),
                   ),
                 ]
               ),
