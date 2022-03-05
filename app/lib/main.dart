@@ -18,8 +18,8 @@ class PonygramApp extends StatefulWidget {
 }
 
 class _PonygramAppState extends State<PonygramApp> {
-  PonygramRouterDelegate _routerDelegate = PonygramRouterDelegate();
-  PonygramRouteInformationParser _routeInformationParser =
+  final PonygramRouterDelegate _routerDelegate = PonygramRouterDelegate();
+  final  PonygramRouteInformationParser _routeInformationParser =
   PonygramRouteInformationParser();
 
   @override
@@ -28,13 +28,13 @@ class _PonygramAppState extends State<PonygramApp> {
       title: 'Ponygr.am',
       routerDelegate: _routerDelegate,
       routeInformationParser: _routeInformationParser,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code
       ],

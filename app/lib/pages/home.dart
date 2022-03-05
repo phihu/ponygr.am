@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../navbar/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
   final ValueChanged<String> navigate;
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Stack(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.expand(),
+            constraints: const BoxConstraints.expand(),
             color: Colors.black,
             child: FittedBox(
               fit: BoxFit.fill,

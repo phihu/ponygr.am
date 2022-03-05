@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../navbar/navbar_widget.dart';
 
 class SearchPage extends StatelessWidget {
   final ValueChanged<String> navigate;
@@ -10,7 +9,7 @@ class SearchPage extends StatelessWidget {
     return Stack(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints.expand(),
+            constraints: const BoxConstraints.expand(),
             child: const Center(
               child: Text('Search Page'),
             ),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'ponygram_route_path.dart';
-import '../pages/home_page.dart';
-import '../pages/search-page.dart';
-import '../pages/messages-pages.dart';
-import '../pages/post-page.dart';
-import '../pages/account_page.dart';
+import '../pages/home.dart';
+import '../pages/search.dart';
+import '../pages/messages.dart';
+import '../pages/post.dart';
+import '../pages/account.dart';
 
 class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PonygramRoutePath> {
+  @override
   final GlobalKey<NavigatorState> navigatorKey;
 
   String _page = 'home';
@@ -17,6 +18,7 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
 
   PonygramRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>();
 
+  @override
   PonygramRoutePath get currentConfiguration {
     if (show404) {
       return PonygramRoutePath.unknown();
@@ -43,15 +45,15 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
 //        if (show404 || _page == 'home')
  */
         if (_page == 'search')
-          MaterialPage(key: ValueKey('Search'), child: SearchPage(navigate: navigate))
+          MaterialPage(key: const ValueKey('Search'), child: SearchPage(navigate: navigate))
         else if (_page == 'messages')
-          MaterialPage(key: ValueKey('Messages'), child: MessagesPage(navigate: navigate))
+          MaterialPage(key: const ValueKey('Messages'), child: MessagesPage(navigate: navigate))
         else if (_page == 'post')
-          MaterialPage(key: ValueKey('Post'), child: PostPage(navigate: navigate))
+          MaterialPage(key: const ValueKey('Post'), child: PostPage(navigate: navigate))
         else if (_page == 'account')
-          MaterialPage(key: ValueKey('Account'), child: AccountPage(navigate: navigate))
+          MaterialPage(key: const ValueKey('Account'), child: AccountPage(navigate: navigate))
         else
-          MaterialPage(key: ValueKey('Home'), child: HomePage(navigate: navigate))
+          MaterialPage(key: const ValueKey('Home'), child: HomePage(navigate: navigate))
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -87,7 +89,6 @@ class PonygramRouterDelegate extends RouterDelegate<PonygramRoutePath>
     show404 = false;
   }
 
-  @override
   Future<bool> navigate(String page) {
     _page = page;
     notifyListeners();

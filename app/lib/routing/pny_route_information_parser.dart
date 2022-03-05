@@ -11,7 +11,7 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
     }
     final uri = test;
     // Handle '/'
-    if (uri.pathSegments.length == 0) {
+    if (uri.pathSegments.isEmpty) {
       return PonygramRoutePath.home();
     }
     if (uri.pathSegments.length == 1) {
@@ -43,31 +43,31 @@ class PonygramRouteInformationParser extends RouteInformationParser<PonygramRout
   }
 
   @override
-  RouteInformation restoreRouteInformation(PonygramRoutePath path) {
-    if (path.isUnknown) {
-      return RouteInformation(location: '/404');
+  RouteInformation restoreRouteInformation(PonygramRoutePath configuration) {
+    if (configuration.isUnknown) {
+      return const RouteInformation(location: '/404');
     }
-    if (path.isAccountPage) {
-      return RouteInformation(location: '/account');
+    if (configuration.isAccountPage) {
+      return const RouteInformation(location: '/account');
     }
-    if (path.isMessagesPage) {
-      return RouteInformation(location: '/messages');
+    if (configuration.isMessagesPage) {
+      return const RouteInformation(location: '/messages');
     }
-    if (path.isSearchPage) {
-      return RouteInformation(location: '/search');
+    if (configuration.isSearchPage) {
+      return const RouteInformation(location: '/search');
     }
-    if (path.isPostPage) {
-      return RouteInformation(location: '/post');
+    if (configuration.isPostPage) {
+      return const RouteInformation(location: '/post');
     }
-    if (path.isHomePage) {
-      return RouteInformation(location: '/');
+    if (configuration.isHomePage) {
+      return const RouteInformation(location: '/');
     }
 /*
-    if (path.isDetailsPage) {
-      return RouteInformation(location: '/post/${path.id}');
+    if (configuration.isDetailsPage) {
+      return RouteInformation(location: '/post/${configuration.id}');
     }
 */
-    return RouteInformation(location: '/');
+    return const RouteInformation(location: '/');
 //    return null;
   }
 }
