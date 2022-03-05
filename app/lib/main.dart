@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../widgets/navbar_widget.dart';
+import 'package:ponygram/widgets/navbar_widget.dart';
 
-import 'routing/pny_route_information_parser.dart';
-import 'routing/ponygram_router_delegate.dart';
+import 'package:ponygram/routing/pny_route_information_parser.dart';
+import 'package:ponygram/routing/ponygram_router_delegate.dart';
 
 void main() {
   runApp(const PonygramApp());
@@ -38,6 +38,15 @@ class _PonygramAppState extends State<PonygramApp> {
         Locale('en', ''), // English, no country code
         Locale('es', ''), // Spanish, no country code
       ],
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        if (supportedLocales
+            .map((e) => e.languageCode)
+            .contains(deviceLocale?.languageCode)) {
+          return deviceLocale;
+        } else {
+          return const Locale('en', '');
+        }
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

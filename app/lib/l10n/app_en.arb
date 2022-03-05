@@ -18,5 +18,13 @@
     "navLabelAccount": "Account",
     "@navLabelAccount": {
         "description": "Label for nav item account"
+    },
+    "postShowMore": "more...",
+    "@postShowMore": {
+        "description": "Link to show more text if text exceeds space limit"
+    },
+    "postShowLess": "less...",
+    "@postShowLess": {
+        "description": "Link to show less text if text is expanded"
     }
 }

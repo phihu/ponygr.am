@@ -3,5 +3,7 @@
     "navLabelSearch": "Suche",
     "navLabelNewPost": "Neuer Post",
     "navLabelMessages": "Nachrichten",
-    "navLabelAccount": "Konto"
+    "navLabelAccount": "Konto",
+    "postShowMore": "mehr...",
+    "postShowLess": "weniger..."
 }

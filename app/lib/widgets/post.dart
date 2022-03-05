@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'message.dart';
 
 class PostWidget extends StatefulWidget {
   const PostWidget({Key? key}) : super(key: key);
@@ -13,6 +13,9 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   static const iconBoxSize = 80.0;
   static const iconSize = 45.0;
+
+  String message = 'Lorem ipsum dolor sit amet, #consetetur sadipscing @elitr, sed diam #nonumy eirmod @tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,7 @@ class _PostWidgetState extends State<PostWidget> {
                   SizedBox(
                     height: iconBoxSize,
                     width: iconBoxSize,
-                    child:GlowIcon(
+                    child: GlowIcon(
                       FontAwesomeIcons.reply,
                       size: iconSize,
                       color: Colors.white,
@@ -72,10 +75,12 @@ class _PostWidgetState extends State<PostWidget> {
                 ]
               ),
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.redAccent)
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PostMessage(message: message)
+                  ]
                 )
               )
             ]
