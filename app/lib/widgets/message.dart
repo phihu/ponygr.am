@@ -24,8 +24,8 @@ class PostMessage extends StatelessWidget {
           // You can add as many Shadow as you want
         ],
       ),
-      expandText: AppLocalizations.of(context)?.postShowMore ?? '',
-      collapseText: 'show less',
+      expandText:  AppLocalizations.of(context)?.postShowMore ?? '...',
+      collapseText: AppLocalizations.of(context)?.postShowLess ?? '...',
       maxLines: 5,
       linkColor: Colors.pink,
       animation: true,

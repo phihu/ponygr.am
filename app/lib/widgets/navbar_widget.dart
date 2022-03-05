@@ -35,7 +35,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -47,7 +46,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.home, size: 30.0, color: Colors.purple),
-          label: AppLocalizations.of(context)?.navLabelHome ?? '',
+          label: AppLocalizations.of(widget.context)?.navLabelHome ?? '',
           backgroundColor: Colors.red,
         ),
         BottomNavigationBarItem(
