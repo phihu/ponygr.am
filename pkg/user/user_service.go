@@ -6,11 +6,15 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/phihu/ponygr.am/pkg/database"
+	"github.com/phihu/ponygr.am/pkg/log"
 	"github.com/pkg/errors"
 )
 
 type (
 	Service interface {
+		ByID(ctx context.Context, id uuid.UUID) (*User, error)
+		ByEmail(ctx context.Context, email string) (*User, error)
+		ByHandle(ctx context.Context, handle string) (*User, error)
 		Create(ctx context.Context, u *User) error
 	}
 	Config  interface{}
@@ -25,6 +29,66 @@ func NewService(cfg Config, db database.DB) (Service, error) {
 		cfg: cfg,
 		db:  db,
 	}, nil
+}
+
+func (svc *service) ByID(ctx context.Context, id uuid.UUID) (*User, error) {
+	var u *User
+	var err error
+	txErr := database.WithTxRO(ctx, svc.db, func(ctx context.Context, dbtx database.Tx) {
+		tx := &Tx{Tx: dbtx}
+		u, err = tx.ByID(ctx, id)
+		if err != nil {
+			// nolint: errcheck
+			log.ErrLog(ctx).Log("msg", "database error",
+				"err", err,
+			)
+			return
+		}
+	})
+	if txErr != nil {
+		return nil, errors.Wrap(txErr, "tx error")
+	}
+	return u, err
+}
+
+func (svc *service) ByEmail(ctx context.Context, email string) (*User, error) {
+	var u *User
+	var err error
+	txErr := database.WithTxRO(ctx, svc.db, func(ctx context.Context, dbtx database.Tx) {
+		tx := &Tx{Tx: dbtx}
+		u, err = tx.ByEmail(ctx, email)
+		if err != nil {
+			// nolint: errcheck
+			log.ErrLog(ctx).Log("msg", "database error",
+				"err", err,
+			)
+			return
+		}
+	})
+	if txErr != nil {
+		return nil, errors.Wrap(txErr, "tx error")
+	}
+	return u, err
+}
+
+func (svc *service) ByHandle(ctx context.Context, handle string) (*User, error) {
+	var u *User
+	var err error
+	txErr := database.WithTxRO(ctx, svc.db, func(ctx context.Context, dbtx database.Tx) {
+		tx := &Tx{Tx: dbtx}
+		u, err = tx.ByHandle(ctx, handle)
+		if err != nil {
+			// nolint: errcheck
+			log.ErrLog(ctx).Log("msg", "database error",
+				"err", err,
+			)
+			return
+		}
+	})
+	if txErr != nil {
+		return nil, errors.Wrap(txErr, "tx error")
+	}
+	return u, err
 }
 
 func (svc *service) Create(ctx context.Context, u *User) error {

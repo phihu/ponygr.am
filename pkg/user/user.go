@@ -11,9 +11,10 @@ import (
 
 type (
 	User struct {
-		ID      uuid.UUID
-		Handle  string
-		Email   string
+		ID     uuid.UUID
+		Email  string
+		Handle string
+
 		Created time.Time
 
 		Status status

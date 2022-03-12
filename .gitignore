@@ -1,2 +1,4 @@
 .DS_Store
 /cmd/ponysrv/ponysrv
+/.env.local
+/.env
