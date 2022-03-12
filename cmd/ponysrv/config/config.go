@@ -1,9 +1,12 @@
 package config
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"net/url"
 	"time"
 
+	"github.com/phihu/ponygr.am/pkg/session"
 	"github.com/vrischmann/envconfig"
 
 	"github.com/pkg/errors"
@@ -45,9 +48,11 @@ type Config struct {
 	}
 
 	Session struct {
-		Debug   bool
-		Name    string        `envconfig:"default=hs"`
-		Timeout time.Duration `envconfig:"default=720h"`
+		Debug               bool
+		Name                string        `envconfig:"default=ps"`
+		Timeout             time.Duration `envconfig:"default=720h"`
+		SignatureKeys       []string
+		signatureKeysParsed [][]byte
 	}
 }
 
@@ -67,9 +72,15 @@ func LoadConfig() (*Config, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "error parsing Config")
 	}
+	err = cfg.Validate()
+	if err != nil {
+		return nil, errors.Wrap(err, "invalid Config")
+	}
+
 	return cfg, nil
 }
 
+// Check checks the config for validity before parsing
 func (c *Config) Check() error {
 	if c.DB.DSN == "" {
 		return errors.New("missing DB DSN")
@@ -85,5 +96,61 @@ func (c *Config) Parse() error {
 		return errors.Wrap(err, "error parsing HTTP Base URL")
 	}
 
+	if c.Session.SignatureKeys != nil {
+		c.Session.signatureKeysParsed = make([][]byte, len(c.Session.SignatureKeys))
+		for i, ks := range c.Session.SignatureKeys {
+			c.Session.signatureKeysParsed[i], err = base64.StdEncoding.DecodeString(ks)
+			if err != nil {
+				return errors.Wrap(err, "error decoding session signature key")
+			}
+		}
+	}
+	if c.Debug && c.Session.SignatureKeys == nil {
+		c.Session.signatureKeysParsed = [][]byte{
+			make([]byte, session.SignatureKeySize),
+		}
+		read, err := rand.Read(c.Session.signatureKeysParsed[0])
+		if err != nil {
+			return errors.Wrap(err, "error generating session signature key")
+		}
+		if read != session.SignatureKeySize {
+			return errors.New("not enough bytes read for signature key")
+		}
+	}
+
 	return nil
+}
+
+// Validate returns an error if the config cannot be used
+//
+// It is run after parsing.
+func (c *Config) Validate() error {
+	if c.Session.signatureKeysParsed == nil {
+		return errors.New("missing session signature keys")
+	}
+	return nil
+}
+
+func (c *Config) HTTPSecure() bool {
+	return c.HTTP.Secure
+}
+
+func (c *Config) SessionName() string {
+	return c.Session.Name
+}
+func (c *Config) SessionSignatureKeys() [][]byte {
+	return c.Session.signatureKeysParsed
+}
+func (c *Config) SessionTimeout() time.Duration {
+	return c.Session.Timeout
+}
+
+func (c *Config) DBDSN() string {
+	return c.DB.DSN
+}
+func (c *Config) DBCACert() string {
+	return c.DB.CACert
+}
+func (c *Config) DBConnMaxLifetime() time.Duration {
+	return c.DB.ConnMaxLifetime
 }

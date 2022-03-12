@@ -2,13 +2,18 @@ package main
 
 import (
 	"context"
+	"net"
 	"net/http"
 	"os"
 	"time"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/go-kit/log"
 	"github.com/phihu/ponygr.am/cmd/ponysrv/config"
+	"github.com/phihu/ponygr.am/pkg/database"
 	plog "github.com/phihu/ponygr.am/pkg/log"
+	"github.com/phihu/ponygr.am/pkg/session"
+	"github.com/phihu/ponygr.am/pkg/user"
 	"github.com/pkg/errors"
 )
 
@@ -39,6 +44,16 @@ type app struct {
 
 	// The default HTTP client, sharing connection pool
 	cl *http.Client
+
+	srv    *http.Server
+	router chi.Router
+
+	recoverer func()
+
+	db database.DB
+
+	sessionSvc session.Service
+	userSvc    user.Service
 }
 
 func runWithCode() int {
@@ -89,6 +104,77 @@ func runWithCode() int {
 
 	app.cl = &http.Client{
 		Timeout: app.cfg.HTTP.Client.Timeout,
+	}
+
+	app.srv = &http.Server{
+		Addr: app.cfg.HTTP.Addr,
+
+		ReadTimeout:  app.cfg.HTTP.ReadTimeout,
+		WriteTimeout: app.cfg.HTTP.WriteTimeout,
+		IdleTimeout:  app.cfg.HTTP.IdleTimeout,
+	}
+	app.srv.BaseContext = func(_ net.Listener) context.Context {
+		return app.ctx
+	}
+	app.router = chi.NewRouter()
+	if app.cfg.Debug {
+		app.router.Use(plog.DebugMiddleware())
+	}
+	app.recoverer = func() {
+		if err := recover(); err != nil {
+			// nolint: errcheck
+			app.errLog.Log("msg", "recovered from panic",
+				"panic", err,
+			)
+		}
+	}
+
+	app.db, err = database.ConnectDB(app.cfg)
+	if err != nil {
+		// nolint: errcheck
+		plog.ErrLog(app.ctx).Log("msg", "error connecting to db",
+			"err", err)
+		return 1
+	}
+
+	app.sessionSvc, err = session.NewService(app.cfg)
+	if err != nil {
+		// nolint: errcheck
+		plog.ErrLog(app.ctx).Log("msg", "error initializing session service",
+			"err", err)
+		return 1
+	}
+
+	app.userSvc, err = user.NewService(app.cfg, app.db)
+	if err != nil {
+		// nolint: errcheck
+		plog.ErrLog(app.ctx).Log("msg", "error initializing user service",
+			"err", err)
+		return 1
+	}
+
+	err = Mount(app.router,
+		app.cfg,
+		app.sessionSvc,
+		app.userSvc,
+	)
+	if err != nil {
+		// nolint: errcheck
+		plog.ErrLog(app.ctx).Log("msg", "error mounting endpoints",
+			"err", err,
+		)
+		return 1
+	}
+
+	app.srv.Handler = app.router
+
+	err = serve(app.ctx, app.srv)
+	if err != nil {
+		// nolint: errcheck
+		plog.ErrLog(app.ctx).Log("msg", "error serving",
+			"err", err,
+		)
+		return 1
 	}
 
 	return 0

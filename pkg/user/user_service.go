@@ -20,11 +20,11 @@ type (
 	}
 )
 
-func NewService(cfg Config, db database.DB) Service {
+func NewService(cfg Config, db database.DB) (Service, error) {
 	return &service{
 		cfg: cfg,
 		db:  db,
-	}
+	}, nil
 }
 
 func (svc *service) Create(ctx context.Context, u *User) error {
