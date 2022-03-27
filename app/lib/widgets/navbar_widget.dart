@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ponygram/l10n/localization.dart';
 
-class BottomNavBar extends StatefulWidget {
+class BottomNavBar extends StatefulWidget{
   final ValueChanged<String> navigate;
   const BottomNavBar({Key? key, required this.navigate}) : super(key: key);
 
@@ -10,7 +11,7 @@ class BottomNavBar extends StatefulWidget {
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavBarState extends State<BottomNavBar> with Localization {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -35,8 +36,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
+
     return BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
@@ -46,27 +49,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.home, size: 30.0, color: Colors.purple),
-          label: AppLocalizations.of(widget.context)?.navLabelHome ?? '',
+          label: localize?.navLabelHome ?? '',
           backgroundColor: Colors.red,
         ),
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.search, size: 30.0, color: Colors.yellowAccent),
-          label: AppLocalizations.of(context)?.navLabelSearch ?? '',
+          label: localize?.navLabelSearch ?? '',
           backgroundColor: Colors.green,
         ),
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.plusCircle, size: 70.0, color: Colors.cyanAccent),
-          label: AppLocalizations.of(context)?.navLabelNewPost ?? '',
+          label: localize?.navLabelNewPost ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.envelope, size: 30.0, color: Colors.pink),
-          label: AppLocalizations.of(context)?.navLabelMessages ?? '',
+          label: localize?.navLabelMessages ?? '',
           backgroundColor: Colors.purple,
         ),
         BottomNavigationBarItem(
           icon: const FaIcon(FontAwesomeIcons.userCog, size: 30.0, color: Colors.greenAccent),
-          label: AppLocalizations.of(context)?.navLabelAccount ?? '',
+          label: localize?.navLabelAccount ?? '',
           backgroundColor: Colors.pink,
         ),
       ],

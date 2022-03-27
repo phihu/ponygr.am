@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
 options: "2b5e44d00e5aaf869086c162b892b3a75ce712ed92a4b0cc36331011896ffae3"
-build_start_time: [1646503391, 580703973]
-build_end_time: [1646503392, 707180976]
+build_start_time: [1648395719, 907227039]
+build_end_time: [1648395720, 792052984]
 inputs:
   "/Users/philipp/BIZ/PH/Projekte/ponygr.am/app/ios/Runner/AppDelegate.swift": [1645697990, 967267990]

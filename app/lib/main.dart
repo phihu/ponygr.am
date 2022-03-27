@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ponygram/widgets/navbar_widget.dart';
 
+import 'package:ponygram/l10n/localization.dart';
 import 'package:ponygram/routing/pny_route_information_parser.dart';
 import 'package:ponygram/routing/ponygram_router_delegate.dart';
 
@@ -51,6 +52,9 @@ class _PonygramAppState extends State<PonygramApp> {
         primarySwatch: Colors.blue,
       ),
       builder: (context, child){
+        var t = AppLocalizations.of(context);
+        // Initialize localization with main context
+        Localization.init(context);
         return MaterialApp(
             home: Scaffold(
               body:child,
